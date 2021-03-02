@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>지역검색</title>
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+        <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=cbdba0278ca1f3d82996610ebd3222a0"></script>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <style>
+        #tbl .row:hover{
+            background: #e3e5ec;
+            transition: 0.2s;
+        }
+        tr .row:hover{
+            background: #e3e5ec;
+        }
+        #tbl td{
+            border-bottom: 1px solid #868686;
+            padding: 12px 20px;
+            text-align: center;
+        }
+        .btnmap{
+            text-align: center;
+        }
+        .btnmap button{
+            border: none;
+            padding: 10px 30px;
+            background: url('place.png') no-repeat;
+            background-size: 12px;
+            background-position: center;
+            cursor: pointer;
+        }
+        #map{
+            margin: 0px auto;
+            margin-top: 30px;
+        }
+    </style>
+    <body>
+        <div id="page">
+            <div id="top">
+                <a href="blog.html">블로그검색</a>&nbsp;&nbsp;&nbsp;
+                <a href="book.html">도서검색</a>&nbsp;&nbsp;&nbsp;
+                <a href="local.html">지역검색</a>&nbsp;&nbsp;&nbsp;
+            </div>
+            <div id="content">
+                <div class="subject"><h1>지역검색</h1></div>
+                <div id="divSearch">
+                    <input type="text" id="txtQuery" value="스타벅스"/>
+                    <input type="button" id="btnSearch" value="검색"/>
+                    <select id="selSize">
+                        <option value="5">5행씩 출력</option>
+                        <option value="10">10행씩 출력</option>
+                        <option value="15">15행씩 출력</option>
+                        <option value="20">20행씩 출력</option>
+                    </select>
+                </div>
+                <table id="tbl"></table>
+                <script id="temp" type="text/x-handlebars-template">
+                    <tr class="title">
+                        <td width=200>장소</td>
+                        <td width=500>주소</td>
+                        <td width=100>전화번호</td>
+                        <td width=50>지도</td>
+                    </tr>
+                    {{#each documents}}
+                    <tr class="row">
+                        <td>{{{palce_name}}}</td>
+                        <td>{{{address_name}}}</td>
+                        <td>{{phone}}</td>
+                        <td class="btnmap"><button x="{{x}}" y="{{y}}" place="{{palce_name}}"></button></td>
+                    </tr>
+                    {{/each}}
+                </script>    
+                <div id="divPage">
+                    <button id="btnPre">◀</button>
+                    <span id="spanPage"></span>
+                    <button id="btnNext">▶</button>
+                </div>
+                <!--지도출력-->
+        <div id="map" style="width:930px;height:450px;border: solid 1px gray;"></div>
+        
+        <div id="bottom">
+            <h3>작성자:인천일보아카데미 홍길동</h3>
+        </div>
+        </div>
+        </div>
+    </body>
+    <script>
+        var url="https://dapi.kakao.com/v2/local/search/keyword.json";
+
+        //지도
+        $("#tblBlog").on("click", ".row button", function(){
+            var x=$(this).attr("x"); //this=버튼
+            var y=$(this).attr("y");
+            var container=document.getElementById('map');
+            var options={
+                center: new kakao.maps.LatLng(y,x),
+                level: 3
+            };
+        var map = new kakao.maps.Map(container, options);
+        var marker=new kakao.maps.Marker({positon:new kakao.maps.LatLng(y,x)});
+        marker.setMap(map);
+
+        var str="<div style='padding:5px; color:blue;'>";
+            strt+=$(this).attr("place")+"<br>";
+            str+="<b>Tel: "+$(this).attr("phone")+"</b>";
+            str+="</div>";
+        var info=new kakao.maps.InfoWindow({content:str});
+        kakao.maps.event.addListener(marker,"mouseover",function(){
+            info.close(map, marker);
+        });
+        kakao.maps.event.addListener(marker,"mouseout",function(){
+            info.close(map, marker);
+        });
+    });
+    </script>
+    <script src="blog.js"></script>
+</html>

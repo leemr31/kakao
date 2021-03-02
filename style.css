@@ -1,0 +1,142 @@
+*{
+    font-family: '본고딕 KR';
+    outline: none;
+    border-collapse: collapse;
+    }
+body{
+    margin: 0px;
+    padding: 0px;
+    background: #e3e5ec;
+}
+.subject{
+    margin-top: 30px;
+}
+#page{
+    width: 960px;
+    height: 1500px;
+    background: white;
+    margin: 0px auto;
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 10px 10px 30px #00000036;
+}
+#content{
+    height: 850px;
+    color: black;
+}
+#top{
+    background: #ffffff;
+    border: 1px solid #4629ec;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 10px;
+}
+#bottom{
+    text-align: center;
+    padding: 20px;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+}
+a:hover{
+    font-weight: bold;
+    padding: 0px 10px;
+    transition: 0.2s;
+    color: #4629ec;
+}
+.subject{
+    text-align: center;
+    color: black;
+}
+
+
+/* 블로그 */
+#tbl{
+    margin: 10px auto;
+    width: 930;
+    }
+#tbl .row{
+    margin: 10px auto;
+}
+#tbl .title{text-align: center;}
+
+
+/* 블로그검색페이지 */
+#divSearch{
+    padding: 10px;
+    border-radius: 6px;
+}
+input[type="text"]{
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px #4629ec solid;
+}
+input[type="button"]{
+    padding: 9px 20px;
+    margin: 0px 10px;
+    border-radius: 6px;
+    border: none;
+    background: #4629ec;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+#selSize{
+    float: right;
+    padding: 10px;
+    margin: 0px;
+    border-radius: 6px;
+    border: 1px #4629ec solid;
+}
+
+#divPage{
+    text-align: center;
+}
+
+/* 버튼 */
+#btnPre{
+    margin-right: 10px;
+}
+
+/* spanpage */
+#spanPage{
+    margin-right: 10px;
+}
+
+/* 라이트박스 */
+#darken-background {
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:100%;
+    display:none;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:10000;
+    overflow-y:scroll;
+    }
+#lightbox {
+    width:500px;
+    margin:20% auto;
+    padding:40px;
+    border-radius:12px;
+    background:white;
+    box-shadow:0px 10px 50px #0000009c;
+    text-align:center;
+    }
+
+/* 닫기버튼 */
+#btnClose{
+    margin-top: 30px;
+    margin-left: 10px;
+    background: #4629ec;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px 40px;
+    font-size: 16px;
+}
