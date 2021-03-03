@@ -1,21 +1,20 @@
 <html>
     <head>
         <title>블로그검색</title>
-        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
         <link rel="stylesheet" href="style.css"/>
     </head>
     <style>
+        ::selection{background: #4629ec; color:white}
         #tbl .row:hover{
-            background: #e3e5ec;
-            font-size: 18px;
+            background: #eff0f3;
             transition: 0.2s;
         }
-        tr .row:hover{
-            background: #e3e5ec;
-        }
+        
         #tbl td{
-        border-bottom: 1px solid #868686;
+        border-bottom: 1px solid gray;
+        border-top: 1px solid gray;
         width: 690px;
         padding: 12px 20px;
         }

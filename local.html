@@ -7,17 +7,17 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <style>
+        ::selection{background: #4629ec; color:white}
         #tbl .row:hover{
-            background: #e3e5ec;
+            background: #eff0f3;
             transition: 0.2s;
-        }
-        tr .row:hover{
-            background: #e3e5ec;
         }
         #tbl td{
             border-bottom: 1px solid #868686;
+            border-top: 1px solid #868686;
             padding: 12px 20px;
             text-align: center;
+            font-size: 18px;
         }
         .btnmap{
             text-align: center;
@@ -32,7 +32,16 @@
         }
         #map{
             margin: 0px auto;
-            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        #btnClose{
+            width: 702px;
+            margin: auto;
+            padding: 12px 0px 12px 0px;
+            background: #4629ec;
+            font-size: 18px;
+            color: white;
+            text-align: center;
         }
     </style>
     <body>
@@ -45,7 +54,7 @@
             <div id="content">
                 <div class="subject"><h1>지역검색</h1></div>
                 <div id="divSearch">
-                    <input type="text" id="txtQuery" value="스타벅스"/>
+                    <input type="text" id="txtQuery" value="이마트"/>
                     <input type="button" id="btnSearch" value="검색"/>
                     <select id="selSize">
                         <option value="5">5행씩 출력</option>
@@ -57,15 +66,15 @@
                 <table id="tbl"></table>
                 <script id="temp" type="text/x-handlebars-template">
                     <tr class="title">
-                        <td width=200>장소</td>
-                        <td width=500>주소</td>
-                        <td width=100>전화번호</td>
-                        <td width=50>지도</td>
+                        <td width=300>장소</td>
+                        <td width=400>주소</td>
+                        <td width=180>전화번호</td>
+                        <td width=10>지도</td>
                     </tr>
                     {{#each documents}}
                     <tr class="row">
-                        <td>{{{palce_name}}}</td>
-                        <td>{{{address_name}}}</td>
+                        <td>{{{place_name}}}</td>
+                        <td>{{address_name}}</td>
                         <td>{{phone}}</td>
                         <td class="btnmap"><button x="{{x}}" y="{{y}}" place="{{palce_name}}"></button></td>
                     </tr>
@@ -76,43 +85,45 @@
                     <span id="spanPage"></span>
                     <button id="btnNext">▶</button>
                 </div>
-                <!--지도출력-->
-        <div id="map" style="width:930px;height:450px;border: solid 1px gray;"></div>
-        
+        <!--지도출력-->
+        <!-- <div id="map" style="width:930px; height:450px; border: solid 1px gray;"></div> -->
+        <div id="darken-background">
+            <div id="lightbox">
+                <div id="map" style="width:700px; height:500px; border: 1px solid gray; border-radius: 6px;"></div>
+                <input type="button" id="btnClose" value="닫기"/>
+            </div>
+        </div>
         <div id="bottom">
             <h3>작성자:인천일보아카데미 홍길동</h3>
-        </div>
-        </div>
         </div>
     </body>
     <script>
         var url="https://dapi.kakao.com/v2/local/search/keyword.json";
 
-        //지도
-        $("#tblBlog").on("click", ".row button", function(){
-            var x=$(this).attr("x"); //this=버튼
+        $("#tbl").on("click",".row button",function(){
+            $("#darken-background").show();
+            var x=$(this).attr("x");
             var y=$(this).attr("y");
-            var container=document.getElementById('map');
-            var options={
+            getMap(x,y);
+        });
+        function getMap(x,y){
+            var container = document.getElementById("map");
+            var options = {
                 center: new kakao.maps.LatLng(y,x),
-                level: 3
+                level: 4
             };
-        var map = new kakao.maps.Map(container, options);
-        var marker=new kakao.maps.Marker({positon:new kakao.maps.LatLng(y,x)});
-        marker.setMap(map);
-
-        var str="<div style='padding:5px; color:blue;'>";
-            strt+=$(this).attr("place")+"<br>";
-            str+="<b>Tel: "+$(this).attr("phone")+"</b>";
-            str+="</div>";
-        var info=new kakao.maps.InfoWindow({content:str});
-        kakao.maps.event.addListener(marker,"mouseover",function(){
-            info.close(map, marker);
-        });
-        kakao.maps.event.addListener(marker,"mouseout",function(){
-            info.close(map, marker);
-        });
-    });
+            var map = new kakao.maps.Map(container, options);
+            var marker = new kakao.maps.Marker({ 
+            
+            //지도 중심좌표에 마커 생성 
+            position: map.getCenter() 
+            }); 
+            marker.setMap(map); //지도에 마커 표시
+        };
+            //지도 닫기
+            $("#btnClose").on("click",function(){
+                $("#darken-background").hide();
+            });
     </script>
     <script src="blog.js"></script>
 </html>

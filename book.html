@@ -1,43 +1,93 @@
 <html>
     <head>
         <title>도서검색</title>
-        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
         <link rel="stylesheet" href="style.css"/>
         <style>
+            ::selection{background: #4629ec; color:white}
             #tbl{
-                width: 900px;
+                width: 1000px;
                 /* overflow: hidden; */
-                margin: 20px 0px 20px 0px auto;
+                margin: 20px auto;
             }
             .box{
-                margin: 10px 10px 10px;
-                width: 182px;
+                margin: 10px;
+                width: 200px;
                 float: left;
                 background: #ffffff;
                 border-radius: 6px;
-                box-shadow: 6px 6px 20px #00000036;
+                box-shadow: 0px 0px 20px#00000036;
                 text-align: center;
-                padding: 20px 10px;
+                padding: 40px 10px;
+            }
+            .box:hover{
+                transition: 0.2s;
+                box-shadow: 0px 0px 20px #4629ec;
+                border: 1px solid #4629ec;
+                margin-top: -2px;
             }
             .box .title{
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                margin-top: 20px;
                 font-size: 16px;
-                width: 180px;
-                font-weight: bold;
+                width: 200px;
+            }
+            .ellipsis {
+                margin-top: 10px;
+                white-space:nowrap; overflow:hidden;
+                font-size:16px; width:200px;
+                text-align: center;
+            }
+            #lightbox{
+                overflow: hidden;
+                padding: 40px;
             }
             .box img{
                 border: 1px solid gray;
                 cursor: pointer;
             }
-            .ellipsis {
+            .price{
                 margin-top: 10px;
-                white-space:nowrap; overflow:hidden; text-overflow:ellipsis; 
-                font-size:16px; width:180px;}
+                font-weight: bold;
+                font-size: 20px;
+            }
             #image{
+                float: left;
                 border: 1px solid gray;
+            }
+            #title{
+                float: left;
+                width: 410px;
+                margin-left: 30px;
+                text-align: left;
+                font-weight: bold;
+                font-size: 24px;
+            }
+            #contents{
+                float: left;
+                width: 410px;
+                margin-left: 30px;
+                margin-bottom: 40px;
+                margin-top: 20px; font-size: 16px; text-align: left;
+            }
+            #price{
+                float: left;
+                width: 410px;
+                margin-left: 30px;
+                color: black;
+            }
+            /* 닫기버튼 */
+            #btnClose{
+                background: #4629ec;
+                color: white;
+                font-size: 16px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                display: contents;
             }
         </style>
     </head>
@@ -51,7 +101,7 @@
             <div id="content">
                 <div class="subject"><h1>도서검색</h1></div>
                 <div id="divSearch">
-                    <input type="text" id="txtQuery" value="자바"/>
+                    <input type="text" id="txtQuery" value="자바스크립트"/>
                     <input type="button" id="btnSearch" value="검색"/>
                     <select id="selSize">
                         <option value="4">4개씩 출력</option>
@@ -64,7 +114,7 @@
                 <script id="temp" type="text/x-handlebars-template">
                     {{#each documents}}
                     <div class="box">
-                        <div><img src="{{thumbnail}}" width="150" title="{{title}}" contents="{{contents}}"></div>
+                        <div><img src="{{thumbnail}}" width="150" height="210" contents="{{contents}}" title="{{title}}"></div>
                         <div class="title">{{{title}}}</div>
                         <div class="price">{{price}}원</div>
                     </div>
@@ -82,11 +132,11 @@
         </div>
         <div id="darken-background">
             <div id="lightbox">
-                <div><img id="image" src="{{thumbnail}}" width="250" contents="{{contents}}"></div>
-                <div id="contents" style="margin-top: 20px; padding: 10px; font-size: 16px; text-align: left;"></div>
+                <div><img id="image" src="{{http://placehold.it/250x400}}" width="250" contents="{{contents}}"></div>
                 <div id="title"></div>
                 <div id="price"></div>
-                <input type="button" value="닫기" id="btnClose"/>
+                <div id="contents"></div>
+                <!-- <br><input type="button" value="닫기" id="btnClose"/> -->
             </div>
         </div>
     </body>
@@ -99,7 +149,7 @@
             $("#darken-background").show();
             $("#title").html($(this).attr("title"));
         });
-        $("#btnClose").on("click", function(){
+        $("#darken-background").on("click", function(){
             $("#darken-background").hide();
         })
     </script>

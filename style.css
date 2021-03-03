@@ -6,22 +6,24 @@
 body{
     margin: 0px;
     padding: 0px;
-    background: #e3e5ec;
+    background: #4629ec;
+}
+h1{
+    font-size: 40px;
 }
 .subject{
     margin-top: 30px;
 }
 #page{
     width: 960px;
-    height: 1500px;
     background: white;
     margin: 0px auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 20px;
     box-shadow: 10px 10px 30px #00000036;
 }
 #content{
-    height: 850px;
     color: black;
 }
 #top{
@@ -35,13 +37,22 @@ body{
     text-align: center;
     padding: 20px;
 }
+#selSize{
+    font-size: 18px;
+}
 
 a{
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 18px;
     color: black;
 }
 a:hover{
+    font-weight: bold;
+    padding: 0px 0px 0px 10px ;
+    transition: 0.2s;
+    color: #4629ec;
+}
+a:active{
     font-weight: bold;
     padding: 0px 10px;
     transition: 0.2s;
@@ -55,13 +66,16 @@ a:hover{
 
 /* 블로그 */
 #tbl{
-    margin: 10px auto;
+    margin: 30px auto;
     width: 930;
     }
 #tbl .row{
     margin: 10px auto;
 }
-#tbl .title{text-align: center;}
+#tbl .title{
+    text-align: center; 
+    font-size: 18px;
+}
 
 
 /* 블로그검색페이지 */
@@ -73,15 +87,16 @@ input[type="text"]{
     padding: 10px;
     border-radius: 6px;
     border: 1px #4629ec solid;
+    font-size: 18px;
 }
 input[type="button"]{
-    padding: 9px 20px;
+    padding: 10px 20px;
     margin: 0px 10px;
     border-radius: 6px;
     border: none;
     background: #4629ec;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
 }
 #selSize{
@@ -94,11 +109,30 @@ input[type="button"]{
 
 #divPage{
     text-align: center;
+    margin-top: 30px;
 }
 
 /* 버튼 */
 #btnPre{
     margin-right: 10px;
+    margin-bottom: 20px;
+    background: #4629ec;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 8px;
+}
+#btnNext{
+    background: #4629ec;
+    margin-bottom: 20px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 8px;
 }
 
 /* spanpage */
@@ -112,31 +146,23 @@ input[type="button"]{
     top:0px;
     left:0px;
     right:0px;
+    bottom: 0%;
     height:100%;
     display:none;
-    background:rgba(0, 0, 0, 0.5);
-    z-index:10000;
+    background:rgba(0, 0, 0, 0.6);
+    z-index:1000;
     overflow-y:scroll;
     }
 #lightbox {
-    width:500px;
-    margin:20% auto;
+    width:700px;
+    margin:auto;
+    margin-top: 200px;
+    margin-bottom: 20px;
     padding:40px;
     border-radius:12px;
     background:white;
     box-shadow:0px 10px 50px #0000009c;
     text-align:center;
+    cursor: auto;
     }
 
-/* 닫기버튼 */
-#btnClose{
-    margin-top: 30px;
-    margin-left: 10px;
-    background: #4629ec;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    padding: 10px 40px;
-    font-size: 16px;
-}
